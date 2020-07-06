@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css'; 
+#toast-container > div {
+    opacity:1;
+}
+
+table a:hover{
+    cursor: pointer;
+}
+
+table td:hover {
+    cursor: pointer;
+  }
+
+table th:hover{
+    cursor: pointer;
+}
+body {
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: whitesmoke;
+  }
+  .modalWindow {
+    width: 500px; height:500px; position: fixed; z-index: 1;right:700px; top:200px; box-shadow: 0 0 100px rgba(black,0.5); background-color: whitesmoke;; padding-top:70px;
+     padding-left: 30px; padding-right: 30px; border-radius: 20px; border-style: solid; border-width: 1px;
+  }
+
+  textarea {
+    resize: none;
+  }
+html, body { height: 100%; }
+
+input.ng-touched.ng-invalid{
+    border-color: #dc3545;
+}
+
+input.ng-valid{
+    border-color: #28a745;
+}
+
+textarea.ng-touched.ng-invalid{
+    border-color: #dc3545;
+}
+
+textarea.ng-valid{
+    border-color: #28a745;
+}
+html, body { height: 100%; }
+body { margin: 0; background-color: dimgray; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
