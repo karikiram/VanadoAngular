@@ -5,6 +5,8 @@ import { AddFailureDialogComponent } from './failure-details/add-failure-dialog/
 import { MachineDetailsComponent } from './machine-details/machine-details.component';
 import { AddMachineDialogComponent } from './machine-details/add-machine-dialog/add-machine-dialog.component';
 import { MachineFailureDetailsComponent } from './machine-details/machine-failure-details/machine-failure-details.component';
+import { EditMachineDialogComponent } from './machine-details/edit-machine-dialog/edit-machine-dialog.component';
+import { EditFailureDialogComponent } from './failure-details/edit-failure-dialog/edit-failure-dialog.component'
 
 const routes : Routes = [
 {   path: '', 
@@ -29,11 +31,11 @@ const routes : Routes = [
 },
 {
     path: 'editMachine/:id',
-    component: AddMachineDialogComponent
+    component: EditMachineDialogComponent
 },
 {
     path: 'editFailure/:id',
-    component: AddFailureDialogComponent
+    component: EditFailureDialogComponent
 },
 {
     path: 'machineFailures/:id',

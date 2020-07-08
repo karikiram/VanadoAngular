@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FailureDetailService } from 'src/app/shared/failure-detail.service';
 import { FailureDetail } from 'src/app/shared/failure-detail.model';
 import { Observable } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MachineDetailService } from 'src/app/shared/machine-detail.service';
 import { MachineDetail } from 'src/app/shared/failure-detail.model';
 
@@ -12,45 +12,59 @@ import { MachineDetail } from 'src/app/shared/failure-detail.model';
   styleUrls: []
 })
 export class MachineFailureDetailsComponent implements OnInit {
+  failures: FailureDetail[] = [];
+  machine = {
+    machine_id: 1,
+    machine_name:''
+  }
   dataSaved = false;
   failureIdUpdate = null;
   message = null;
-  allFailures: Observable<FailureDetail[]>;
+  allFailures: any;
+  id: number;
 
   constructor(public failureService:FailureDetailService,public machineService:MachineDetailService, private route: ActivatedRoute,
     private router: Router) { }
 
-  ngOnInit(): void {
-    this.loadAllFailures();
+  ngOnInit(){
+     this.getFailuresForMachine();
   }
 
-  loadAllFailures() { 
-    this.allFailures = this.failureService.getAllFailure();  
-  } 
   getFailure(id){
     this.router.navigate(['/editFailure', id]);
   }
+
+  getFailuresForMachine() {
+    this.route.paramMap.subscribe(params => {
+      this.id = parseInt(params.get("id"));
+       this.failureService.getFailurebyMachineId(this.id).subscribe(x=>{
+         this.failures = x
+         console.log(this.failures.length);
+        })
+     })
+  }
   
   updateFailure(failure_id: number) {
-    if (confirm("Are you sure you want to change status ?")) {
+    if (confirm("Are you sure you want to change failure ?")) {
       this.failureService.updateFailureStatus(failure_id).subscribe(() =>{
         this.dataSaved = true;  
-        this.message = 'Status change succesfully';  
-        this.loadAllFailures();  
+        this.message = 'Failure change succesfully';  
+        this.getFailuresForMachine();
         this.failureIdUpdate = null;  
     
       }); 
     }
   }
+
   deleteFailure(failure_id: number) {  
-    if (confirm("Are you sure you want to delete this ?")) {   
+    if (confirm("Are you sure you want to delete this failure ?")) {   
     this.failureService.deleteFailureById(failure_id).subscribe(() => {  
       this.dataSaved = true;  
-      this.message = 'Record Deleted Succefully';  
-      this.loadAllFailures();  
+      this.message = 'Failure Deleted Succefully';  
+      this.getFailuresForMachine(); 
       this.failureIdUpdate = null;  
   
     });  
   }  
-}
+  }
 }

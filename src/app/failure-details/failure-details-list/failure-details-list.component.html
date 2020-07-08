@@ -14,21 +14,21 @@
               <th class="tbl2">Status Change</th>
             </tr>  
             <tr *ngFor="let fail of allFailures | async | sortBy:'desc':'failure_priority'"> 
-              <td *ngIf="fail.failure_status===false" class="tbl2">{{fail.failure_id}}</td> 
-              <td *ngIf="fail.failure_status===false" class="tbl2">{{fail.failure_name }}</td>  
-              <td *ngIf="fail.failure_status===false" class="tbl2">{{fail.failure_description}}</td> 
-              <td *ngIf="fail.failure_status===false" class="tbl2">{{fail.failure_datetime | date: 'medium'}}</td> 
-              <td *ngIf="fail.failure_status===false" class="tbl2">{{fail.failure_machineid}}</td>
-              <td *ngIf="fail.failure_status===false" class="tbl2">{{fail.failure_status ==0? 'U kvaru' : 'Popravljeno'}}</td>  
-              <td *ngIf="fail.failure_status===false" class="tbl2">{{fail.failure_documentation}}</td>  
-              <td *ngIf="fail.failure_status===false" class="tbl2">{{fail.failure_priority}}</td>
-              <td  *ngIf="fail.failure_status===false" class="tbl2">  
+              <td class="tbl2">{{fail.failure_id}}</td> 
+              <td class="tbl2">{{fail.failure_name }}</td>  
+              <td class="tbl2">{{fail.failure_description}}</td> 
+              <td class="tbl2">{{fail.failure_datetime | date: 'medium'}}</td> 
+              <td class="tbl2">{{fail.failure_machineid}}</td>
+              <td class="tbl2">{{fail.failure_status ==0? 'U kvaru' : 'Popravljeno'}}</td>  
+              <td class="tbl2">{{fail.failure_documentation}}</td>  
+              <td class="tbl2">{{fail.failure_priority}}</td>
+              <td class="tbl2">  
                 <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="getFailure(fail.failure_id)">Edit</button>  
               </td>  
-              <td *ngIf="fail.failure_status===false" class="tbl2">  
+              <td class="tbl2">  
                 <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteFailure(fail.failure_id)">Delete</button>  
               </td>  
-              <td *ngIf="fail.failure_status===false" class="tbl2">  
+              <td class="tbl2">  
                 <button type="button" class="btn btn-success"matTooltip="Click Status Change Button"(click)="updateFailure(fail.failure_id)">Change</button>  
               </td>
             </tr> 

@@ -27,10 +27,8 @@ export class MachineDetailService {
     return this.http.post(this.rootURL + '/Machine', data);
   }
 
-  updateMachine(machine: MachineDetail): Observable<MachineDetail> {  
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
-    return this.http.put<MachineDetail>(this.rootURL + '/Machine/',  
-    machine, httpOptions);  
+  updateMachine(id: number, data){   
+    return this.http.put<MachineDetail>(this.rootURL + '/Machine/' + id, data) 
   }  
 
   deleteMachineById(machine_id: number): Observable<number> {  

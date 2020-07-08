@@ -23,27 +23,23 @@ export class FailureDetailService {
     return this.http.get<FailureDetail>(this.rootURL + '/Failure/' + failure_id);  
   }  
 
+  getFailurebyMachineId(failure_machineid: number): Observable<FailureDetail[]> {  
+    return this.http.get<FailureDetail[]>(this.rootURL + '/Specific/' + failure_machineid);  
+  } 
+
   updateFailureStatus(failure_id: number) {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
     return this.http.post<number>(this.rootURL + '/Failure/' + failure_id,  
  httpOptions);
   }
 
-  /**createFailure(failure: FailureDetail): Observable<FailureDetail> {  
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
-    return this.http.post<FailureDetail>(this.rootURL + '/Failure',  
-    failure, httpOptions);  
-  }**/ 
-
   createFailure(data){
     return this.http.post(this.rootURL + '/Failure', data);
   }
 
-  updateFailure(failure: FailureDetail): Observable<FailureDetail> {  
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
-    return this.http.put<FailureDetail>(this.rootURL + '/Failure/',  
-    failure, httpOptions);  
-  }  
+  updateFailure(id: number, data){   
+    return this.http.put<FailureDetail>(this.rootURL + '/Failure/' + id, data) 
+  }   
 
   deleteFailureById(failure_id: number): Observable<number> { 
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  

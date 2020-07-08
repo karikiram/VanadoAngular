@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FailureDetailService } from 'src/app/shared/failure-detail.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-failure-dialog',
@@ -20,21 +20,27 @@ export class AddFailureDialogComponent implements OnInit {
   };
   id : number;
   submitted= false;
+  descriptionHidden:Boolean=true;
+  fileToUpload: File = null;
+  
 
-  constructor(public failureService: FailureDetailService, public route: ActivatedRoute) {}
+  constructor(public failureService: FailureDetailService, public route: ActivatedRoute, public router: Router) {}
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.id = parseInt(params.get("id"));
-       this.failureService.getFailurebyId(this.id).subscribe(x=>{
-         this.failure = x
-        })
-     })
+
+  ngOnInit(){
   }
 
-  test() {
-    if (this.failure.failure_name.length>19)
-    {}
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+}
+
+  nameChanged(value:string){
+    if (value.length>20){
+      this.descriptionHidden=false;
+    }
+    else {
+      this.descriptionHidden=true;
+    }
   }
 
   saveFailure() {
@@ -48,16 +54,22 @@ export class AddFailureDialogComponent implements OnInit {
       failure_documentation: this.failure.failure_documentation,
       failure_priority: this.failure.failure_priority
     };
-
+    if(this.failure.failure_priority > 10 || this.failure.failure_priority < 1)
+    {
+      alert("Wrong priority value, put value between 1-10")
+    }
+    else {
     this.failureService.createFailure(data)
       .subscribe(
         response => {
           console.log(response);
           this.submitted = true;
+          this.router.navigate(['/Failures']);
         },
         error => {
           console.log(error);
         });
+      }
   }
 
   newFailure() {

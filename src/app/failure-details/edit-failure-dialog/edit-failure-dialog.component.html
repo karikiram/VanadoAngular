@@ -71,17 +71,19 @@
     </div>
 
     <div class="form-group col-md-4 mb-3">
-      <label for="failure_documentation">Choose File</label>
+      <label for="failure_documentation">Failure Documentation</label>
       <input
-        type="file"
+        type="text"
+        class="form-control"
         id="failure_documentation"
         [(ngModel)]="failure.failure_documentation"
         name="failure_documentation"
-        (change)="handleFileInput($event.target.files)">
+        value="Choose a file(not working)"
+      />
     </div>
 
     <div class="form-group col-md-2 mb-3">
-      <label for="failure_priority">Failure Priority</label>
+      <label for="failure_priority">Failure Priority (1-10)</label>
       <input
       type="number"
         class="form-control"
@@ -90,11 +92,10 @@
         [(ngModel)]="failure.failure_priority"
         name="failure_priority"
       />
-      <md-error>Please enter a value between 1 and 10</md-error>
     </div>
-  <div class="form-group col-md-2 mb-3">
-      <button (click)="saveFailure()" class="btn btn-success">Submit</button>
-  </div>
+    <div class="form-group col-md-2 mb-3">
+      <button (click)="editFailure(failure.failure_id)" class="btn btn-success">Edit</button>
+      </div>
     </div>
   
     <div *ngIf="submitted">

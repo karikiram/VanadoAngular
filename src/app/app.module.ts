@@ -30,6 +30,8 @@ import { MachineDetailsComponent } from './machine-details/machine-details.compo
 import { MachineDetailsListComponent } from './machine-details/machine-details-list/machine-details-list.component';
 import { AddMachineDialogComponent } from './machine-details/add-machine-dialog/add-machine-dialog.component';
 import { MachineFailureDetailsComponent } from './machine-details/machine-failure-details/machine-failure-details.component';
+import { EditFailureDialogComponent } from './failure-details/edit-failure-dialog/edit-failure-dialog.component';
+import { EditMachineDialogComponent } from './machine-details/edit-machine-dialog/edit-machine-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,9 @@ import { MachineFailureDetailsComponent } from './machine-details/machine-failur
     MachineDetailsComponent,
     MachineDetailsListComponent,
     AddMachineDialogComponent,
-    MachineFailureDetailsComponent
+    MachineFailureDetailsComponent,
+    EditFailureDialogComponent,
+    EditMachineDialogComponent
   ],
   imports: [
     BrowserModule,

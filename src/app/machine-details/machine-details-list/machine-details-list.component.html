@@ -5,16 +5,20 @@
           <th class="tbl2">Name</th>
           <th class="tbl2">Edit</th>
           <th class="tbl2">Delete</th>
+          <th class="tbl2">Details</th>
         </tr>  
         <tr *ngFor="let mach of allMachines | async">  
-          <td class="tbl2" (click)="getMachineInfo(mach.machine_id)">{{mach.machine_id}}</td>  
+          <td class="tbl2">{{mach.machine_id}}</td>  
           <td class="tbl2" >{{mach.machine_name }}</td>  
           <td class="tbl2">  
             <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="getMachine(mach.machine_id)">Edit</button>  
           </td>  
           <td class="tbl2">  
             <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteMachine(mach.machine_id)">Delete</button>  
-          </td>  
+          </td> 
+          <td class="tbl2">  
+            <button type="button" class="btn btn-link"matTooltip="Click Details Button"(click)="getMachineInfo(mach.machine_id)">Details</button>  
+          </td>   
         </tr>  
 
       </table>  

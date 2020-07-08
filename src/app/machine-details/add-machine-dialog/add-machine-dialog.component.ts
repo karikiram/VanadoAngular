@@ -9,23 +9,17 @@ import { ActivatedRoute,Router,ParamMap } from '@angular/router'
 })
 export class AddMachineDialogComponent implements OnInit {
   machine = {
-    machine_id: 0,
+    machine_id: 1,
     machine_name:''
   }
   id : number;
   submitted= false;
-  editButton = false;
-  constructor(public machineService: MachineDetailService, public route: ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.id = parseInt(params.get("id"));
-       this.machineService.getMachineById(this.id).subscribe(x=>{
-         this.machine = x
-        })
-     })
+  constructor(public machineService: MachineDetailService, public route: ActivatedRoute, public router: Router) {
+   }
+
+  ngOnInit(){
   }
-
   saveMachine() {
     const data = {
       machine_id: this.machine.machine_id,
@@ -37,6 +31,7 @@ export class AddMachineDialogComponent implements OnInit {
     response =>{
       console.log(response);
       this.submitted = true;
+      this.router.navigate(['/Machines']);
     },
     error => {
       console.log(error);

@@ -13,7 +13,7 @@
               <th class="tbl2">Delete</th>
               <th class="tbl2">Status Change</th>
             </tr>  
-            <tr *ngFor="let fail of allFailures | async | sortBy:'desc':'failure_priority'"> 
+            <tr *ngFor="let fail of failures | sortBy:'desc':'failure_priority'"> 
               <td class="tbl2">{{fail.failure_id}}</td>  
               <td class="tbl2">{{fail.failure_name }}</td>  
               <td class="tbl2">{{fail.failure_description}}</td> 
